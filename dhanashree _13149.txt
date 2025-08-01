@@ -1,0 +1,242 @@
+Enter password: ****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 16
+Server version: 8.0.32 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2023, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> use demo;
+Database changed
+mysql> ^C
+mysql> select power(2,3);
++------------+
+| power(2,3) |
++------------+
+|          8 |
++------------+
+1 row in set (0.00 sec)
+
+mysql> select sqrt(64);
++----------+
+| sqrt(64) |
++----------+
+|        8 |
++----------+
+1 row in set (0.00 sec)
+
+mysql> select abs(-80);
++----------+
+| abs(-80) |
++----------+
+|       80 |
++----------+
+1 row in set (0.00 sec)
+
+mysql> select floor(8.84);
++-------------+
+| floor(8.84) |
++-------------+
+|           8 |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> select left('helloworld',4);
++----------------------+
+| left('helloworld',4) |
++----------------------+
+| hell                 |
++----------------------+
+1 row in set (0.00 sec)
+
+mysql> select right('helloworld',4);
++-----------------------+
+| right('helloworld',4) |
++-----------------------+
+| orld                  |
++-----------------------+
+1 row in set (0.00 sec)
+
+mysql> select replace('hello world','world','sql')AS replace_str;
++-------------+
+| replace_str |
++-------------+
+| hello sql   |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> select upper('hello')AS upper_str;
++-----------+
+| upper_str |
++-----------+
+| HELLO     |
++-----------+
+1 row in set (0.00 sec)
+
+mysql> select lower('hello')AS lower_str;
++-----------+
+| lower_str |
++-----------+
+| hello     |
++-----------+
+1 row in set (0.00 sec)
+
+mysql>  select substring('hello world',1,5)AS sub_str;
++---------+
+| sub_str |
++---------+
+| hello   |
++---------+
+1 row in set (0.00 sec)
+
+mysql> select trim('hello')AS trimmed;
++---------+
+| trimmed |
++---------+
+| hello   |
++---------+
+1 row in set (0.00 sec)
+
+mysql>  select position('world' in 'hello world')AS pos;
++-----+
+| pos |
++-----+
+|   7 |
++-----+
+1 row in set (0.00 sec)
+
+mysql> select ELT('aa','bca','pqr');
++-----------------------+
+| ELT('aa','bca','pqr') |
++-----------------------+
+| NULL                  |
++-----------------------+
+1 row in set, 1 warning (0.00 sec)
+
+mysql>  select instr('dhanashree','chandankar');
++----------------------------------+
+| instr('dhanashree','chandankar') |
++----------------------------------+
+|                                0 |
++----------------------------------+
+1 row in set (0.00 sec)
+
+mysql>  SELECT CURRENT_DATE;
++--------------+
+| CURRENT_DATE |
++--------------+
+| 2025-08-01   |
++--------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT CURRENT_TIMESTAMP;
++---------------------+
+| CURRENT_TIMESTAMP   |
++---------------------+
+| 2025-08-01 23:56:42 |
++---------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT EXTRACT(YEAR FROM CURRENT_DATE)AS year;
++------+
+| year |
++------+
+| 2025 |
++------+
+1 row in set (0.00 sec)
+
+mysql>  SELECT EXTRACT(DAY FROM CURRENT_DATE)AS day;
++------+
+| day  |
++------+
+|    1 |
++------+
+1 row in set (0.00 sec)
+
+mysql> SELECT EXTRACT(MONTH FROM CURRENT_DATE)AS month;
++-------+
+| month |
++-------+
+|     8 |
++-------+
+1 row in set (0.00 sec)
+
+mysql> CREATE TABLE coustomer_us(
+    ->  coustomer_id INT,
+    -> coustomer_name VARCHAR(23)
+    ->  );
+ERROR 1050 (42S01): Table 'coustomer_us' already exists
+mysql> CREATE TABLE coustomer_ca(
+    -> coustomer_id INT,
+    -> coustomer_name VARCHAR(80)
+    -> );
+ERROR 1050 (42S01): Table 'coustomer_ca' already exists
+mysql>  CREATE TABLE coustomer_us(
+    -> coustomer_id INT,
+    ->  coustomer_name VARCHAR(80)
+    -> );
+ERROR 1050 (42S01): Table 'coustomer_us' already exists
+mysql> CREATE TABLE coustomer_om(
+    ->  coustomer_id INT,
+    -> coustomer_name VARCHAR(80)
+    ->  );
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> CREATE TABLE coustomer_ac(
+    -> coustomer_id INT,
+    -> coustomer_name VARCHAR(23)
+    -> );
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> INSERT INTO coustomer_om(coustomer_id,coustomer_name) VALUES
+    -> (1,'AVANTIKA'),
+    ->  (2,'OM'),
+    ->  (3,'DHANASHREE'),
+    -> (4,'YASH');
+Query OK, 4 rows affected (0.01 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> INSERT INTO coustomer_ac(coustomer_id,coustomer_name)VALUES
+    -> (4,'SAYALI'),
+    -> (5,'ROHAN'),
+    -> (6,'PRAJYOT');
+Query OK, 3 rows affected (0.01 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> SELECT coustomer_id,coustomer_name FROM coustomer_om
+    ->  UNION
+    ->  SELECT coustomer_id,coustomer_name FROM coustomer_ac;
++--------------+----------------+
+| coustomer_id | coustomer_name |
++--------------+----------------+
+|            1 | AVANTIKA       |
+|            2 | OM             |
+|            3 | DHANASHREE     |
+|            4 | YASH           |
+|            4 | SAYALI         |
+|            5 | ROHAN          |
+|            6 | PRAJYOT        |
++--------------+----------------+
+7 rows in set (0.01 sec)
+
+mysql> SELECT coustomer_id,coustomer_name FROM coustomer_om
+    -> UNION ALL
+    ->  SELECT coustomer_id,coustomer_name FROM coustomer_ac;
++--------------+----------------+
+| coustomer_id | coustomer_name |
++--------------+----------------+
+|            1 | AVANTIKA       |
+|            2 | OM             |
+|            3 | DHANASHREE     |
+|            4 | YASH           |
+|            4 | SAYALI         |
+|            5 | ROHAN          |
+|            6 | PRAJYOT        |
++--------------+----------------+
+7 rows in set (0.00 sec)
+
